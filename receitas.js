@@ -31,7 +31,9 @@ rl.question(qst, function(ans) {
 
         res.on('end', function() {
             finalData = JSON.parse(finalData);
-            console.log(finalData);
+            finalData.results.forEach(function(rec) {
+                console.log('Recipe: ' + rec.title);
+            });
         });
     });
 });
