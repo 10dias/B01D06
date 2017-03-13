@@ -23,7 +23,16 @@ rl.question(qst, function(ans) {
     const recipe = ans.toLowerCase().trim();
 
     http.get(API + recipe, function(res) {
-        console.log(res.headers);
+        let finalData = '';
+
+        res.on('data', function(d) {
+            finalData += d;
+        });
+
+        res.on('end', function() {
+            finalData = JSON.parse(finalData);
+            console.log(finalData);
+        });
     });
 });
 
