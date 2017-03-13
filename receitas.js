@@ -13,3 +13,10 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+const qst = 'Type in a recipe to search for: ';
+
+rl.question(qst, function(ans) {
+    rl.close();
+    console.log(ans);
+});
+
