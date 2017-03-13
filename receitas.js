@@ -7,6 +7,9 @@
 'use strict';
 
 const readline = require('readline');
+const http = require('http');
+
+const API = 'http://www.recipepuppy.com/api/?q=';
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -17,6 +20,10 @@ const qst = 'Type in a recipe to search for: ';
 
 rl.question(qst, function(ans) {
     rl.close();
-    console.log(ans);
+    const recipe = ans.toLowerCase().trim();
+
+    http.get(API + recipe, function(res) {
+        console.log(res.headers);
+    });
 });
 
